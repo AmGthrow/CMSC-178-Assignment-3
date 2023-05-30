@@ -47,7 +47,25 @@ for i=1:N
 
 %    3. blank out the neighbourhood around the identified maxima
     %recommended area is 5 x 5
-    H(x-regionSize:x+regionSize,y-regionSize:y+regionSize) = 0;
+
+    regionXStart = x-regionSize;
+    if regionXStart < 1
+        regionXStart = 1;
+    end
+    regionXEnd = x+regionSize;
+    if regionXEnd > size(H,1)
+        regionXEnd = size(H,1);
+    end
+    regionYStart = y -regionSize;
+    if regionYStart < 1
+        regionYStart = 1;
+    end
+    regionYEnd = y +regionSize;
+    if regionYEnd > size(H,2)
+        regionYEnd = size(H,2);
+    end
+    H(regionXStart:regionXEnd,regionYStart:regionYEnd) = 0;
+    %H(x-regionSize:x+regionSize,y-regionSize:y+regionSize) = 0;
 end
 %
 % dummy code - return N random estimates - NOTE: remove the two lines below

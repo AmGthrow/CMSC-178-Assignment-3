@@ -26,6 +26,15 @@ H  = hough_transform(E,[-diag:diag],[-90:0.5:90]);
 rt = extract_lines(H,[-diag:diag],[-90:0.5:90],N);
 display_lines(I,rt);
 
+% TEST 3 - image with plenty of edges
+I = imread('edge.png');
+E = double(imread('lift_crop_log_edge.tif'))/255;
+figure;subplot(1,2,1);imagesc(I);axis equal tight; subplot(1,2,2);imagesc(E);axis equal tight; colormap(gray);
+diag=round(sqrt(sum(size(E).^2)));
+H  = hough_transform(E,[-diag:diag],[-90:0.5:90]);
+rt = extract_lines(H,[-diag:diag],[-90:0.5:90],N);
+display_lines(I,rt);
+
 % add your own testing code as required below
 
 
