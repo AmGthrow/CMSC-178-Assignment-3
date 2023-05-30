@@ -23,16 +23,36 @@ RT = zeros(N,2);
 % region around this point is then zeroed, and the process repeated for
 % the next brightest line. ie.
 %
-% for i=1 to N
+
+%Determines the size of the region that will be blacked out
+%will round up to the next odd number if even
+regionSize = 5;
+
+%value that is added and subtracted to the indx to determine the region
+regionSize = floor(regionSize/2);
+
+for i=1:N
 %    1. find brightest maxima using local neigbourhood estimates (this will 
 %        probably require a double for loop etc)
-%    2. record the rho,theta value
-%    3. blank out the neighbourhood around the identified maxima
-%
 
+    %find the index of the brightest maxima
+    [~, indx] = max(H(:));
+
+    %convert the indx of the brightest maxima  to x and y values
+    [x,y] = ind2sub(size(H),indx);
+    
+%    2. record the rho,theta value
+    RT(i,1) = rhos(x);
+    RT(i,2) = thetas(y);
+
+%    3. blank out the neighbourhood around the identified maxima
+    %recommended area is 5 x 5
+    H(x-regionSize:x+regionSize,y-regionSize:y+regionSize) = 0;
+end
+%
 % dummy code - return N random estimates - NOTE: remove the two lines below
-RT(:,1) = rhos( max(1,round(length(rhos)*rand(1,N))))';
-RT(:,2) = thetas( max(1,round(length(thetas)*rand(1,N))) )';
+% RT(:,1) = rhos( max(1,round(length(rhos)*rand(1,N))))';
+% RT(:,2) = thetas( max(1,round(length(thetas)*rand(1,N))) )';
 
 % ---------------------put your code in above ---------------------------
 
