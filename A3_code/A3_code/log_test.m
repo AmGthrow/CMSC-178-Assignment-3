@@ -17,7 +17,7 @@ imagesc(E); title('Edges'); axis equal tight;
 colormap(gray);
 drawnow;
 
-% 9x9 filter
+% 15x15 filter
 [E,B,G] = log_edge(I,15);
 figure
 subplot(2,2,1);
