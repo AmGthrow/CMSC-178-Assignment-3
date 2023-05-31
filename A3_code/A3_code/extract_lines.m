@@ -26,7 +26,7 @@ RT = zeros(N,2);
 
 %Determines the size of the region that will be blacked out
 %will round up to the next odd number if even
-regionSize = 5;
+regionSize = 21;
 
 %value that is added and subtracted to the indx to determine the region
 regionSize = floor(regionSize/2);

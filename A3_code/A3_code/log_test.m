@@ -62,4 +62,3 @@ subplot(2,2,4);
 imagesc(E); title('Edges'); axis equal tight; 
 colormap(gray);
 drawnow;
-
